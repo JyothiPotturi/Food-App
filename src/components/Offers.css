@@ -1,0 +1,33 @@
+.offerscontainer{
+    width: 80%;
+    margin: 20px auto;
+    padding-top: 80px;
+}
+
+.offersimg{
+    width: 1200px;
+    height: 380px;
+}
+
+.offersbox{
+    margin-top: 50px;
+    padding: 10px;
+    border:1px solid rgba(2, 6, 12, 0.1);
+    border-radius: 20px;
+}
+
+.offersbox > h2{
+    font-size: 28px;
+    margin: 15px;
+    color: rgba(2, 6, 12, 0.6);
+}
+
+.offersbox > p{
+    margin: 15px;
+    
+}
+
+body.dark .offersbox > h2{
+
+    color: white
+}

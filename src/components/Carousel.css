@@ -1,0 +1,24 @@
+.Carouselcontainer {
+  /* width: 80%;
+  margin: 0 auto; */
+  overflow: hidden; /* Prevents horizontal scroll on the page */
+   /* Optional: background color for the carousel container */
+}
+
+.Carousel {
+  display: flex;
+  overflow-x: auto; /* Enables horizontal scroll */
+  overflow-y: hidden; /* Enables horizontal scroll */
+  scroll-behavior: smooth;
+}
+
+.carouselimage {
+  height: 180px;
+  width: 144px; /* Set your desired image height */
+  background-color: transparent;
+  padding-right: 16px;
+}
+
+.Carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
