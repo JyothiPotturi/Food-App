@@ -31,10 +31,7 @@ const RestaurantMenu = () => {
 
   const fetchMenu = async () => {
     const data = await fetch(
-      `https://food-app-backend-g98l.onrender.com/api/menu?resid=${resid}&catalog_qa=undefined&submitAction=ENTER`
-      // "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=" +
-      //   resid +
-      //   "&catalog_qa=undefined&submitAction=ENTER"
+      `https://food-app-backend-g98l.onrender.com/api/menu?resid=${resid}`
     );
     const json = await data.json();
 
@@ -66,7 +63,7 @@ const RestaurantMenu = () => {
       <div className="menu_heading_box">
         <div className="menu_heading_decor">
           <div>
-            <FaStar/>
+            <FaStar />
           </div>
           <h3>{avgRating} </h3>
           <h3>({totalRatingsString})</h3>
@@ -82,15 +79,9 @@ const RestaurantMenu = () => {
       <div className="menu_heading">MENU</div>
 
       <div className="toggle-container" style={{ display: "flex" }}>
-        <button>
+        <button onClick={toggleVeg} style={{ cursor: "pointer" }}>
           <div className={`toggle-border${showVeg ? " green" : ""}`}>
-            <input
-              id="veg"
-              type="checkbox"
-              checked={showVeg}
-              onChange={toggleVeg}
-            />
-            <label htmlFor="veg" className="veg-label">
+            <label className="veg-label">
               <BiSolidCircle
                 className="vegclass"
                 style={{ background: "white", cursor: "pointer" }}
@@ -99,16 +90,10 @@ const RestaurantMenu = () => {
           </div>
         </button>
 
-        <button>
+        <button onClick={toggleNonVeg} style={{ cursor: "pointer" }}>
           <div className={`toggle-border${showNonVeg ? " red" : ""}`}>
-            <input
-              id="nonVeg"
-              type="checkbox"
-              checked={showNonVeg}
-              onChange={toggleNonVeg}
-            />
-            <label htmlFor="nonVeg" className="non-veg-label">
-              <div className="">
+            <label className="non-veg-label">
+              <div>
                 <IoTriangle
                   className="nonvegclass"
                   style={{ background: "white", cursor: "pointer" }}
@@ -126,7 +111,7 @@ const RestaurantMenu = () => {
         }}
       ></div>
 
-      {categories.map((category,index) => (
+      {categories.map((category, index) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}

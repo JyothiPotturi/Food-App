@@ -37,9 +37,9 @@ input[type="checkbox"] {
   z-index:10
 }
 
-/* When checked, move right */
-input[type="checkbox"]:checked + label .vegclass,
-input[type="checkbox"]:checked + label .nonvegclass {
+/* When checked, move right*/
+.toggle-border.green .vegclass,
+.toggle-border.red .nonvegclass {
   transform: translateX(22px);
 }
 

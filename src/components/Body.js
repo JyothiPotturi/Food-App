@@ -20,9 +20,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-     "https://food-app-backend-g98l.onrender.com/api/restaurants"
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+     "https://food-app-backend-g98l.onrender.com/api/restaurants");
     const json = await data.json();
     setCarouselList(
       json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info

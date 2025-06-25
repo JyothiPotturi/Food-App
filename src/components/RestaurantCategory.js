@@ -8,8 +8,7 @@ import { IoTriangle } from "react-icons/io5";
 import { BiSolidCircle } from "react-icons/bi";
 
 const RestaurantCategory = ({ data, showVeg, showNonVeg, index }) => {
-  
-  const [showItems, setshowItems] = useState(index==0);
+  const [showItems, setshowItems] = useState(index == 0);
 
   const handleClick = () => {
     setshowItems(!showItems);
@@ -79,7 +78,7 @@ const RestaurantCategory = ({ data, showVeg, showNonVeg, index }) => {
                       <br />
                       {ratings?.aggregatedRating?.rating?.length && (
                         <>
-                          <FaStar style={{color:"green"}}/>
+                          <FaStar style={{ color: "green" }} />
                           {ratings.aggregatedRating.rating}(
                           {ratings.aggregatedRating.ratingCount})
                         </>
@@ -89,12 +88,19 @@ const RestaurantCategory = ({ data, showVeg, showNonVeg, index }) => {
                     <div className="description-box">{description}</div>
                   </div>
                   <div className="img-cart">
-                    <img
-                      className="resDish-logo"
-                      alt="resdish-logo"
-                      src={CDN_URL + imageId}
+                    {imageId ? (
+                      <img
+                        className="resDish-logo"
+                        alt="resdish-logo"
+                        src={CDN_URL + imageId}
+                      />
+                    ) : null}
+                    <CardCart
+                      id={id}
+                      price={price || defaultPrice}
+                      name={name}
+                      imageId={imageId}
                     />
-                    <CardCart id={id} price={price || defaultPrice} name={name} imageId={imageId}/>
                   </div>
                 </li>
               </div>

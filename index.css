@@ -204,6 +204,7 @@ body.dark .description-box{
   background-color: transparent;
   border: none;
   padding-top: 4px;
+  cursor: pointer;
 }
 
 body.dark .Addtocart div div span{
