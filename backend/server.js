@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -44,3 +45,11 @@ app.get('/api/restaurants', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Proxy server running on port ${PORT}`));
+
+// Serve static files
+app.use(express.static('dist')); // or wherever Parcel outputs your frontend build
+
+// Fallback for SPA routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});

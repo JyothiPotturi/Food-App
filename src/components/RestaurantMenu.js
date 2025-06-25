@@ -31,9 +31,10 @@ const RestaurantMenu = () => {
 
   const fetchMenu = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=" +
-        resid +
-        "&catalog_qa=undefined&submitAction=ENTER"
+      `https://food-app-backend-g98l.onrender.com/api/menu?resid=${resid}&catalog_qa=undefined&submitAction=ENTER`
+      // "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=" +
+      //   resid +
+      //   "&catalog_qa=undefined&submitAction=ENTER"
     );
     const json = await data.json();
 
