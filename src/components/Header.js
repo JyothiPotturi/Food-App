@@ -10,6 +10,7 @@ import { IoMdHome } from "react-icons/io";
 import { BiSolidOffer } from "react-icons/bi";
 import { IoInformationCircle } from "react-icons/io5";
 import { IoMdContact } from "react-icons/io";
+import { useLocation } from "react-router";
 import "./Header.css";
 
 const Header = ({ setsearchTerm, settopRestaurants, topRestaurants }) => {
@@ -33,53 +34,62 @@ const Header = ({ setsearchTerm, settopRestaurants, topRestaurants }) => {
     localStoragemode ? localStoragemode : "light"
   );
 
+  const location = useLocation();
   useEffect(() => {
     document.body.classList.add(localStoragemode);
   }, []);
 
   useEffect(() => {
-    inputSearchRef.current.focus();
-  }, []);
+    if (inputSearchRef.current) {
+      inputSearchRef.current.value = "";
+      inputSearchRef.current.focus();
+      setsearch("");
+    }
+  }, [location.pathname]);
 
   return (
     <div className="header">
       <div className="logo-container">
         <img className="logo" src={LOGO_URL} />
       </div>
-      <div style={{ display: "flex" }}>
-        <input
-          type="text"
-          className="search-box"
-          placeholder="search for restaurants"
-          value={search}
-          onChange={(e) => {
-            setsearch(e.target.value);
-          }}
-          ref={inputSearchRef}
-        />
+      {location.pathname === "/" && (
+        <>
+          <div style={{ display: "flex" }}>
+            <input
+              type="text"
+              className="search-box"
+              placeholder="search for restaurants"
+              value={search}
+              onChange={(e) => {
+                setsearch(e.target.value);
+              }}
+              ref={inputSearchRef}
+            />
 
-        <button
-          className="search-button"
-          onClick={() => {
-            setsearchTerm(search);
-          }}
-        >
-          <LuSearch />
-        </button>
-      </div>
-      <div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            settopRestaurants(!topRestaurants);
-            topRestName == "Top Rated Restaurants"
-              ? setTopRestName("All Restaurants")
-              : setTopRestName("Top Rated Restaurants");
-          }}
-        >
-          {topRestName}
-        </button>
-      </div>
+            <button
+              className="search-button"
+              onClick={() => {
+                setsearchTerm(search);
+              }}
+            >
+              <LuSearch />
+            </button>
+          </div>
+          <div>
+            <button
+              className={`filter-btn ${topRestaurants ? "active" : ""}`}
+              onClick={() => {
+                settopRestaurants(!topRestaurants);
+                topRestName == "Top Rated Restaurants"
+                  ? setTopRestName("All Restaurants")
+                  : setTopRestName("Top Rated Restaurants");
+              }}
+            >
+              {topRestName}
+            </button>
+          </div>
+        </>
+      )}
       <div className="nav-items">
         <ul>
           <li>
@@ -108,7 +118,8 @@ const Header = ({ setsearchTerm, settopRestaurants, topRestaurants }) => {
             </Link>
           </li>
 
-          <li className ="toggle-mode"
+          <li
+            className="toggle-mode"
             style={{ cursor: "pointer" }}
             onClick={() => {
               setmode((prev) => {
@@ -127,8 +138,8 @@ const Header = ({ setsearchTerm, settopRestaurants, topRestaurants }) => {
               btnName == "login" ? setbtnName("logout") : setbtnName("login");
             }}
           >
-            < IoMdContact style={{width:"20px"}} />
-            <span style={{paddingLeft:"5px", width:"75px"}}>{btnName}</span>
+            <IoMdContact style={{ width: "20px" }} />
+            <span style={{ paddingLeft: "5px", width: "75px" }}>{btnName}</span>
           </li>
         </ul>
       </div>

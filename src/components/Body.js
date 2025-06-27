@@ -13,6 +13,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestraunt] = useState([]);
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
   const [CarouselList, setCarouselList] = useState([]);
+  const [istopRestaurant, setistopRestaurant] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -20,7 +21,8 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-     "https://food-app-backend-g98l.onrender.com/api/restaurants");
+      "https://food-app-backend-g98l.onrender.com/api/restaurants"
+    );
     const json = await data.json();
     setCarouselList(
       json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
@@ -44,18 +46,26 @@ const Body = () => {
 
   useEffect(() => {
     if (topRestaurants) {
+      setistopRestaurant(true);
       const filteredList = listOfRestaurants.filter(
         (res) => res.info.avgRating > 4.5
       );
       setfilteredRestaurant(filteredList);
-    } else setfilteredRestaurant(listOfRestaurants);
+    } else {
+      setistopRestaurant(false);
+      setfilteredRestaurant(listOfRestaurants);
+    }
   }, [topRestaurants]);
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div style = {{boxShadow:"rgba(0, 0, 0, 0.12) 4px 16px rgba(0, 0, 0, 0.12)"}}>
+      <div
+        style={{
+          boxShadow: "rgba(0, 0, 0, 0.12) 4px 16px rgba(0, 0, 0, 0.12)",
+        }}
+      >
         <Carousel CarouselList={CarouselList} />
         <hr
           style={{
@@ -64,7 +74,9 @@ const Body = () => {
           }}
         ></hr>
         <h2 style={{ fontSize: "1.5em", fontWeight: "bold" }}>
-          Restaurants with online food delivery
+          {istopRestaurant
+            ? "Top Rated Restaurants Near You"
+            : "Restaurants with online food delivery"}
         </h2>
         <div className="res-container">
           {filteredRestaurant.map((restaurant) => (

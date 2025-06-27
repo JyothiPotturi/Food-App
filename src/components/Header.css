@@ -54,6 +54,11 @@ body.dark .header {
   width: 176px;
 }
 
+.filter-btn.active {
+  background-color: #9ca3af; 
+  color: white;
+}
+
 .nav-items {
   padding: 0px 20px;
 }
@@ -104,3 +109,5 @@ body.dark .header {
 body.dark  .filter-btn {
     color: #ffffff;
   }
+
+
