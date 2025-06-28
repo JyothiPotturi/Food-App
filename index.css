@@ -16,8 +16,7 @@ body {
 .body {
   padding-top: 80px;
   width: 80%;
-  margin: 0 auto;
-  
+  margin: 0 auto;  
 }
 
 body.dark {
@@ -185,7 +184,6 @@ body.dark .description-box{
 .resDish-logo {
   width: 150px;
   height: 120;
-
   border-radius: 10;
 }
 
@@ -205,6 +203,11 @@ body.dark .description-box{
   border: none;
   padding-top: 4px;
   cursor: pointer;
+}
+
+.no-results-message{
+  text-align: center;
+  margin-top: 50px; 
 }
 
 body.dark .Addtocart div div span{

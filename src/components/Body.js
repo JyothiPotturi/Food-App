@@ -61,34 +61,36 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div
-        style={{
-          boxShadow: "rgba(0, 0, 0, 0.12) 4px 16px rgba(0, 0, 0, 0.12)",
-        }}
-      >
-        <Carousel CarouselList={CarouselList} />
-        <hr
-          style={{
-            border: "1px solid rgba(2, 6, 12, 0.05)",
-            margin: "32px auto",
-          }}
-        ></hr>
-        <h2 style={{ fontSize: "1.5em", fontWeight: "bold" }}>
-          {istopRestaurant
-            ? "Top Rated Restaurants Near You"
-            : "Restaurants with online food delivery"}
+      {filteredRestaurant.length === 0 ? (
+        <h2 className="no-results-message">
+          No restaurants found matching your criteria.
         </h2>
-        <div className="res-container">
-          {filteredRestaurant.map((restaurant) => (
-            <Link
-              key={restaurant.info.id}
-              to={"/restaurants/" + restaurant.info.id}
-            >
-              <RestaurantCard resData={restaurant} />
-            </Link>
-          ))}
+      ) : (
+        <div>
+          <Carousel CarouselList={CarouselList} />
+          <hr
+            style={{
+              border: "1px solid rgba(2, 6, 12, 0.05)",
+              margin: "32px auto",
+            }}
+          ></hr>
+          <h2 style={{ fontSize: "1.5em", fontWeight: "bold" }}>
+            {istopRestaurant
+              ? "Top Rated Restaurants Near You"
+              : "Restaurants with online food delivery"}
+          </h2>
+          <div className="res-container">
+            {filteredRestaurant.map((restaurant) => (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                <RestaurantCard resData={restaurant} />
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

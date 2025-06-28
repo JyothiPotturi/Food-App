@@ -16,7 +16,7 @@
   height: 180px;
   width: 144px; /* Set your desired image height */
   background-color: transparent;
-  padding-right: 16px;
+  /* padding-right: 16px; */
 }
 
 .Carousel::-webkit-scrollbar {
